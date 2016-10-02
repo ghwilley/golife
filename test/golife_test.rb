@@ -5,10 +5,6 @@ class GolifeTest < Minitest::Test
     refute_nil ::Golife::VERSION
   end
 
-  def test_it_does_something_useful
-    assert true
-	end
-
   def test_horizontal_blinker_next_generation_is_vertical
     blinker = Golife::Game.new.tap do |b|
       b.width  = 3
@@ -54,31 +50,29 @@ class GolifeTest < Minitest::Test
   	before do
 	    @golife = Golife::Game.new
 	  end
+
 	  describe "it initializes a new game correctly" do
 	  	it "starts at generation 0" do
 	  		assert_equal @golife.generation, 0
 	  	end
-	  
-	  	it "has a width of 10" do 
+
+	  	it "has a width of 10" do
 	  		assert_equal @golife.width, 10
 	  	end
 
-	  	it "has a height of 10" do 
+	  	it "has a height of 10" do
 	  		assert_equal @golife.height, 10
 	  	end
 
-	  	it "generates a correct playground" do 
-	  		@golife.playground.each do |dim| 
+	  	it "generates a correct playground" do
+	  		@golife.playground.each do |dim|
 	  			assert_equal dim.length, 10
 	  		end
 	  	end
-
-
-
 	  end
 
 	  describe "makes a playground" do
-	  	
+
 	  	it "will randomly make live cells" do
 	  		5.times do
 	  			if Golife::Game.new != @golife
@@ -94,11 +88,9 @@ class GolifeTest < Minitest::Test
 	  	it "will return a collection of cells" do
 	  		assert_equal @golife.make_playground(1,1)[0][0].class, Cell
 	  	end
-
 	  end
 
-	  describe "show playground" do 
-
+	  describe "show playground" do
 	  	it "will return a collection" do
 	  		assert_equal @golife.show_playground.class, Array
 	  	end
@@ -106,7 +98,6 @@ class GolifeTest < Minitest::Test
 	  	it "will print" do
 	  		assert_output() { @golife.show_playground }
 	  	end
-
 	  end
 
 	  describe "next generation" do
@@ -116,14 +107,8 @@ class GolifeTest < Minitest::Test
 	  		@golife.next_generation
 	  		assert @golife.generation == before_next + 1
 	  	end
-
 		end
-
-
-
   end
-
-
 
   describe Cell do
 	  before do
@@ -139,14 +124,13 @@ class GolifeTest < Minitest::Test
 	      assert_equal @cell.x, 1
 	      assert_equal @cell.y, 2
 	    end
-
 	  end
 
 	  describe "Cells function" do
 	  	it "will return it's alive" do
 	  		@cell.alive?.must_equal true
 	  	end
-	  		
+
 	  	it "will return it's not dead" do
 	  		@cell.dead?.must_equal false
 	  	end
@@ -165,14 +149,6 @@ class GolifeTest < Minitest::Test
 	  	it "return string coordinates" do
 	  		@cell.to_s.must_equal "x: 1, y: 2"
 	  	end
-
-
-
 	  end
-
 	end
-
-
 end
-
-
